@@ -1,0 +1,30 @@
+{
+  "name": "react-vite-demo",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui-treasury/layout": "^5.0.1-alpha.0",
+    "@mui/icons-material": "^5.8.0",
+    "@mui/material": "^5.8.0",
+    "@mui/styled-engine-sc": "^5.8.0",
+    "material-dynamic-colors": "^0.0.10",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.2",
+    "vite-plugin-progress": "^0.0.1"
+  }
+}
