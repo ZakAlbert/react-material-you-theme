@@ -50,7 +50,7 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
         resetPaletteMode();
         resetColorScheme();
         //generateColorScheme("#293064");
-        //generateColorScheme("#386a20");
+        //generateColorScheme("#3a691e");
     };
 
     return <>

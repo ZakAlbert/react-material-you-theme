@@ -14,7 +14,8 @@ const ElevationToolbar: FC<Props> = ({ children, window }) => {
     });
 
     return cloneElement(children, {
-        elevation: trigger ? 4 : 0
+        elevation: trigger ? 4 : 0,
+        color: trigger ? 'primary' : ''
     });
 };
 
