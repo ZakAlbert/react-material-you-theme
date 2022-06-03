@@ -1,6 +1,6 @@
-import { ThemeColor } from "../@types/MaterialPalette";
+import { ColorScheme } from "../@types/MaterialPalette";
 
-export const DefaultThemeColor: ThemeColor = {
+export const DefaultThemeColor: ColorScheme = {
     light: {
         primary: '#6750A4',
         onPrimary: '#FFFFFF',

@@ -5,13 +5,13 @@ import { ColorScheme } from '../../@types/MaterialPalette';
 
 import 'material-dynamic-colors';
 
+const DEFAULT_COLOR_SCHEME: ColorScheme = DefaultThemeColor;
+
 export interface ColorContextType {
     colorScheme: ColorScheme,
     generateColorScheme: (base: string) => void,
     resetColorScheme: () => void
 };
-
-const DEFAULT_COLOR_SCHEME: ColorScheme = DefaultThemeColor;
 
 export const ColorContext = createContext<ColorContextType>({
     colorScheme: DEFAULT_COLOR_SCHEME,
@@ -29,17 +29,17 @@ const ColorProvider = ({ children }: { children: ReactNode }) => {
         localStorage.setItem('ColorScheme', JSON.stringify(value));
     };
 
+    const resetColorScheme = () => {
+        setColorScheme(DEFAULT_COLOR_SCHEME);
+        localStorage.setItem('ColorScheme', JSON.stringify(DEFAULT_COLOR_SCHEME));
+    };
+
     useEffect(() => {
         if (localStorage.getItem('ColorScheme')) {
             const LocalScheme = JSON.parse(localStorage.getItem('ColorScheme') || '{}');
             setColorScheme(LocalScheme);
         }
     }, []);
-
-    const resetColorScheme = () => {
-        setColorScheme(DEFAULT_COLOR_SCHEME);
-        localStorage.setItem('ColorScheme', JSON.stringify(DEFAULT_COLOR_SCHEME));
-    };
 
     return (
         <ColorContext.Provider value={{ colorScheme, generateColorScheme, resetColorScheme }}>

@@ -43,11 +43,6 @@ export interface MaterialPalette {
     shadow: string,
 }
 
-export interface ThemeColor {
-    light: MaterialPalette,
-    dark: MaterialPalette
-}
-
 export interface ColorScheme {
     light: MaterialPalette,
     dark: MaterialPalette

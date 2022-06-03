@@ -23,8 +23,6 @@ interface LayoutProps {
 
 const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
-const drawerWidth = 240;
-
 const Layout: FC<LayoutProps> = ({ children, window }) => {
 
     const boxContainerStyle: SxProps<Theme> = {
@@ -51,12 +49,13 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
     const reset = () => {
         resetPaletteMode();
         resetColorScheme();
-        //generateColorScheme("#050E58")
+        //generateColorScheme("#293064");
+        //generateColorScheme("#386a20");
     };
 
     return <>
         <ElevationToolbar window={window} >
-            <AppBar enableColorOnDark position="fixed">
+            <AppBar enableColorOnDark position="fixed" color="primary">
                 <Toolbar>
                     <IconButton color="inherit" size="large" edge="start">
                         <MenuIcon />
