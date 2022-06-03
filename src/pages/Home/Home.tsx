@@ -1,21 +1,20 @@
 import { useContext, useState } from "react";
 
-import { Box, Button, Card, CardContent, Divider, TextField, Fab, FormControl, IconButton, FormGroup, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Switch, Typography } from '@mui/material';
+import { Button, Card, CardContent, TextField, Fab, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Typography, CardActions } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/EditTwoTone';
 import FavoriteIcon from '@mui/icons-material/FavoriteTwoTone';
 import NavigationIcon from '@mui/icons-material/NavigationTwoTone';
-import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 import GpsFixedTwoTone from '@mui/icons-material/GpsFixedTwoTone';
 
 import { PaletteContext, PaletteContextType } from '../../Context/ui/PaletteContext';
-import { ColorContext, ColorContextType } from '../../Context/ui/ColorContext';
 import { Grid } from "@mui/material";
+import ColorSystem from "../../components/ColorSystem";
 
 const Home = () => {
 
-    const { paletteMode, togglePalette } = useContext<PaletteContextType>(PaletteContext);
-    const { colorScheme } = useContext<ColorContextType>(ColorContext);
+    const { paletteMode } = useContext<PaletteContextType>(PaletteContext);
+    //const { colorScheme } = useContext<ColorContextType>(ColorContext);
 
     const [age, setAge] = useState('');
 
@@ -25,11 +24,10 @@ const Home = () => {
 
     return (
         <Stack spacing={2}>
-            <Stack>
+            <Stack marginBottom={3}>
                 <Typography sx={{ fontWeight: 'bold', fontSize: '2rem' }}>Material You - {paletteMode}</Typography>
                 <Typography sx={{ fontWeight: '500' }}>@ZakAlbert94</Typography>
             </Stack>
-            <Divider />
 
             <Grid container rowGap={1} gap={6} >
                 <Grid item xs="auto">
@@ -57,7 +55,7 @@ const Home = () => {
                         <Fab variant="primary" title='Primary'><EditIcon /></Fab>
                         <Fab variant="surface" title='Surface'><EditIcon /></Fab>
                         <Fab variant="secondary" title='Secondary'><EditIcon /></Fab>
-                        <Fab variant="tertiary" title='Tertiary'><EditIcon /></Fab>
+                        <Fab variant="tertiary" title='Tertiary' ><EditIcon /></Fab>
 
                         <Fab variant='extended' color='primary'>
                             <NavigationIcon sx={{ mr: 1 }} />
@@ -80,6 +78,52 @@ const Home = () => {
                         </Fab>
                     </Stack>
                 </Grid>
+
+                <Grid item xs="auto">
+                    <Typography variant='h4' marginBottom={2}>Cards</Typography>
+                    <Stack direction="row" spacing={2} marginBottom={0}>
+                        <Card variant="elevation" >
+                            <CardContent>
+                                <Typography gutterBottom variant="h5">
+                                    Glass Souls World Tour
+                                </Typography>
+                                <Typography variant="body2">
+                                    From your recent favorites
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button variant="filled" size="small">Buy Tickets</Button>
+                            </CardActions>
+                        </Card>
+                        <Card variant="filled">
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" >
+                                    Glass Souls World Tour
+                                </Typography>
+                                <Typography variant="body2">
+                                    From your recent favorites
+                                </Typography>
+                            </CardContent>
+                            <CardActions >
+                                <Button variant="outlined" >Buy Tickets</Button>
+                            </CardActions>
+                        </Card>
+                        <Card variant="outlined">
+                            <CardContent>
+                                <Typography gutterBottom variant="h5" >
+                                    Glass Souls World Tour
+                                </Typography>
+                                <Typography variant="body2">
+                                    From your recent favorites
+                                </Typography>
+                            </CardContent>
+                            <CardActions >
+                                <Button variant="tonal" size="small">Buy Tickets</Button>
+                            </CardActions>
+                        </Card>
+                    </Stack>
+                </Grid>
+
                 <Grid item xs="auto">
                     <Typography variant='h4' marginBottom={2}>Text Fields</Typography>
                     <Stack direction="row" spacing={2} marginBottom={0}>
@@ -180,7 +224,13 @@ const Home = () => {
                         </FormControl>
                     </Stack>
                 </Grid>
+                <Grid item xs={12}>
+
+                    <ColorSystem />
+                </Grid>
             </Grid>
+
+
             {/*  <Card elevation={3}>
                 <CardContent>
                     <Stack
@@ -200,7 +250,7 @@ const Home = () => {
                 </CardContent>
             </Card> */}
 
-            <Card elevation={3}>
+            {/*  <Card elevation={3}>
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -226,7 +276,7 @@ const Home = () => {
                         </Grid>
                     </Grid>
                 </CardContent>
-            </Card>
+            </Card> */}
         </Stack >
     )
 }

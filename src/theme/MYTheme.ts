@@ -56,37 +56,10 @@ declare module '@mui/material/Button' {
         filled: true;
         tonal: true;
     }
-    interface ButtonPropsColorOverrides {
-        //primary: true
-        onPrimary: true,
-        primaryContainer: true,
-        onPrimaryContainer: true,
-        //secondary: true,
-        onSecondary: true,
-        secondaryContainer: true,
-        onSecondaryContainer: true,
-        tertiary: true,
-        onTertiary?: true,
-        tertiaryContainer: true,
-        onTertiaryContainer: true,
-        //error: true,
-        onError: true,
-        errorContainer: true,
-        onErrorContainer: true,
-        //background: true,
-        onBackground: true,
-        surface: true,
-        onSurface: true,
-        surfaceVariant: true,
-        onSurfaceVariant: true,
-        inverseSurface: true,
-        inverseOnSurface: true,
-    }
 }
 
-declare module '@mui/material/card' {
-    interface CardPropsVariantOverrides {
-        elevated: true;
+declare module '@mui/material/Paper' {
+    interface PaperPropsVariantOverrides {
         filled: true;
     }
 }
@@ -99,30 +72,8 @@ declare module '@mui/material/Fab' {
         surface: true;
     }
     interface FabPropsColorOverrides {
-        //primary: true
-        onPrimary: true,
-        primaryContainer: true,
-        onPrimaryContainer: true,
-        //secondary: true,
-        onSecondary: true,
-        secondaryContainer: true,
-        onSecondaryContainer: true,
         tertiary: true,
-        onTertiary?: true,
-        tertiaryContainer: true,
-        onTertiaryContainer: true,
-        //error: true,
-        onError: true,
-        errorContainer: true,
-        onErrorContainer: true,
-        //background: true,
-        onBackground: true,
         surface: true,
-        onSurface: true,
-        surfaceVariant: true,
-        onSurfaceVariant: true,
-        inverseSurface: true,
-        inverseOnSurface: true,
     }
 }
 
@@ -274,9 +225,25 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
             MuiAppBar: {
                 styleOverrides: {
                     root: {
-                        background: theme.palette.surface.main,
-                        color: theme.palette.onSurface.main
+                        backgroundColor: theme.palette.surface.main,
+                        color: theme.palette.onSurface.main,
+                        transition: theme.transitions.create(
+                            ['background-color', 'box-shadow', 'color'],
+                            {
+                                duration: theme.transitions.duration.short,
+                            },
+                        ),
                     },
+                    colorPrimary: {
+                        backgroundColor: alpha(theme.palette.secondaryContainer.main, 0.95),
+                        color: theme.palette.onSecondaryContainer.main,
+                        transition: theme.transitions.create(
+                            ['background-color', 'box-shadow', 'color'],
+                            {
+                                duration: theme.transitions.duration.short,
+                            },
+                        ),
+                    }
                 },
             },
             MuiButton: {
@@ -286,7 +253,8 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
                         textTransform: 'none'
                     },
                     outlined: {
-                        borderColor: theme.palette.outline
+                        borderColor: theme.palette.outline,
+                        background: theme.palette.surface.main,
                     }
                 },
                 variants: [
@@ -444,6 +412,66 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
                                 boxShadow: theme.shadows[4],
                                 background: alpha(theme.palette.primary.main, 0.08),
                             }
+                        }
+                    }
+                ]
+            },
+            MuiCard: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: '20px',
+                        padding: '10px 8px'
+                    }
+                },
+                variants: [
+                    {
+                        props: { variant: 'elevation' },
+                        style: {
+                            boxShadow: theme.shadows[1],
+                            backgroundColor: alpha(theme.palette.primary.main, 0.05),
+                            transition: theme.transitions.create(
+                                ['background-color', 'box-shadow', 'border-color', 'color'],
+                                {
+                                    duration: theme.transitions.duration.short,
+                                },
+                            ),
+                            '&:hover': {
+                                boxShadow: theme.shadows[2],
+                                background: alpha(theme.palette.primary.main, 0.08),
+                            }
+                        }
+                    },
+                    {
+                        props: { variant: 'filled' },
+                        style: {
+                            backgroundColor: theme.palette.surfaceVariant.main,
+                            transition: theme.transitions.create(
+                                ['background-color', 'box-shadow', 'border-color', 'color'],
+                                {
+                                    duration: theme.transitions.duration.short,
+                                },
+                            ),
+                            '&:hover': {
+                                boxShadow: theme.shadows[1],
+                                background: alpha(theme.palette.surfaceVariant.main, 0.8),
+                            }
+                        }
+                    },
+                    {
+                        props: { variant: 'outlined' },
+                        style: {
+                            backgroundColor: theme.palette.surface.main,
+                            borderColor: theme.palette.outline,
+                            transition: theme.transitions.create(
+                                ['background-color', 'box-shadow', 'border-color', 'color'],
+                                {
+                                    duration: theme.transitions.duration.short,
+                                },
+                            ),
+                            '&:hover': {
+                                boxShadow: theme.shadows[1],
+                                background: alpha(theme.palette.onSurface.main, 0.05),
+                            },
                         }
                     }
                 ]
