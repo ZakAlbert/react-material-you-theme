@@ -2,6 +2,7 @@
 import { ThemeOptions } from "@mui/material/styles";
 import { ColorScheme } from "../@types/MaterialPalette";
 import { Theme, lighten, darken, alpha } from '@mui/material';
+import { palette } from "@mui/system";
 
 declare module '@mui/material/styles/createPalette' {
     //* MY = Material You
@@ -479,7 +480,9 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
             MuiPaper: {
                 styleOverrides: {
                     root: {
-                        backgroundColor: theme.palette.surface.main,
+                        backgroundColor: theme.palette.mode === 'dark' ?
+                            darken(theme.palette.primary.main, 0.9) :
+                            lighten(theme.palette.primary.main, 0.9),
                         color: theme.palette.onSurface.main
                     },
                     outlined: {

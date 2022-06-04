@@ -1,6 +1,6 @@
 import { Box, Grid, SxProps, Theme, Typography } from "@mui/material";
 import { FC, useContext } from "react";
-import { ColorContext, ColorContextType } from "../Context/ui/ColorContext";
+import { ColorContext, ColorContextType } from "../context/ui/ColorContext";
 
 const ColorSystem = () => {
 

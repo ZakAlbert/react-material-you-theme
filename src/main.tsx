@@ -2,8 +2,8 @@
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-import ColorProvider from './Context/ui/ColorContext';
-import PaletteProvider from './Context/ui/PaletteContext';
+import ColorProvider from './context/ui/ColorContext';
+import PaletteProvider from './context/ui/PaletteContext';
 
 createRoot(document.getElementById('root')!).render(
     // ColorProvider => PaletteProvider => ThemeProvider

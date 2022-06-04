@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 
-import { Button, Card, CardContent, TextField, Fab, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Typography, CardActions } from '@mui/material';
+import { Button, Card, CardContent, TextField, Fab, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Typography, CardActions, BottomNavigation, BottomNavigationAction } from '@mui/material';
 
 import EditIcon from '@mui/icons-material/EditTwoTone';
 import FavoriteIcon from '@mui/icons-material/FavoriteTwoTone';
 import NavigationIcon from '@mui/icons-material/NavigationTwoTone';
 import GpsFixedTwoTone from '@mui/icons-material/GpsFixedTwoTone';
 
-import { PaletteContext, PaletteContextType } from '../../Context/ui/PaletteContext';
+import { PaletteContext, PaletteContextType } from '../../context/ui/PaletteContext';
 import { Grid } from "@mui/material";
 import ColorSystem from "../../components/ColorSystem";
 

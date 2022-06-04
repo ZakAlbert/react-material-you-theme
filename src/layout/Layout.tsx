@@ -13,8 +13,8 @@ import NotificationIcon from '@mui/icons-material/NotificationsTwoTone';
 import RestartAltTwoToneIcon from '@mui/icons-material/RestartAltTwoTone';
 import MenuIcon from '@mui/icons-material/MenuTwoTone';
 
-import { PaletteContext, PaletteContextType } from '../Context/ui/PaletteContext';
-import { ColorContext, ColorContextType } from "../Context/ui/ColorContext";
+import { PaletteContext, PaletteContextType } from '../context/ui/PaletteContext';
+import { ColorContext, ColorContextType } from "../context/ui/ColorContext";
 
 interface LayoutProps {
     window?: () => Window;

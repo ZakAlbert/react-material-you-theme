@@ -2,8 +2,8 @@
 import { CssBaseline } from '@mui/material';
 import { FunctionComponent, useContext } from 'react';
 
-import { PaletteContext, PaletteContextType } from './Context/ui/PaletteContext';
-import { ColorContext, ColorContextType } from './Context/ui/ColorContext';
+import { PaletteContext, PaletteContextType } from './context/ui/PaletteContext';
+import { ColorContext, ColorContextType } from './context/ui/ColorContext';
 
 import MYThemeProvider from './theme/MYThemeProvider';
 
