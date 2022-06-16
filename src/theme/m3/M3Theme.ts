@@ -1,8 +1,176 @@
 
 import { ThemeOptions } from "@mui/material/styles";
-import { ColorScheme } from "../@types/MaterialPalette";
 import { Theme, lighten, darken, alpha } from '@mui/material';
-import { palette } from "@mui/system";
+
+interface M3Tone {
+    0: string,
+    10: string,
+    20: string,
+    30: string,
+    40: string,
+    50: string,
+    60: string,
+    70: string,
+    80: string,
+    90: string,
+    95: string,
+    99: string,
+    100: string
+}
+export interface M3ThemeTones {
+    primary: M3Tone;
+    secondary: M3Tone;
+    tertiary: M3Tone;
+    neutral: M3Tone;
+    neutralVariant: M3Tone;
+    error: M3Tone;
+}
+
+export interface M3ColorTokens {
+    primary: string,
+    onPrimary: string,
+
+    primaryContainer: string,
+    onPrimaryContainer: string,
+
+    secondary: string,
+    onSecondary: string,
+
+    secondaryContainer: string,
+    onSecondaryContainer: string,
+
+    tertiary: string,
+    onTertiary: string,
+
+    tertiaryContainer: string,
+    onTertiaryContainer: string,
+
+    error: string,
+    onError: string,
+
+    errorContainer: string,
+    onErrorContainer: string,
+
+    background: string,
+    onBackground: string,
+
+    surface: string,
+    onSurface: string,
+
+    surfaceVariant: string,
+    onSurfaceVariant: string,
+
+    inverseSurface: string,
+    inverseOnSurface: string,
+
+    inversePrimary: string,
+    surfaceTint?: string,
+
+    outline: string,
+    shadow: string,
+}
+
+export type M3ThemeMode = 'dark' | 'light';
+
+export interface M3ThemeScheme {
+    light: M3ColorTokens,
+    dark: M3ColorTokens,
+    tones?: M3ThemeTones
+}
+
+export const DEFAULT_M3_THEME_HCT = {
+    BaseColor: "#6750A4",
+    Chrome: "#00002f",
+    Hue: "#00012a",
+    Tone: "#000028"
+}
+
+export const DEFAULT_M3_THEME_SCHEME: M3ThemeScheme = {
+    light: {
+        primary: '#6750A4',
+        onPrimary: '#FFFFFF',
+
+        primaryContainer: '#EADDFF',
+        onPrimaryContainer: '#21005E',
+
+        secondary: '#9c27b0',
+        onSecondary: '#FFFFFF',
+
+        secondaryContainer: '#E8DEF8',
+        onSecondaryContainer: '#1E192B',
+
+        tertiary: '#7D5260',
+        onTertiary: '#FFFFFF',
+
+        tertiaryContainer: '#FFD8E4',
+        onTertiaryContainer: '#370B1E',
+
+        error: '#B3261E',
+        onError: '#ffffff',
+
+        errorContainer: '#F9DEDC',
+        onErrorContainer: '#370B1E',
+
+        background: '#FFFBFE',
+        onBackground: '#1C1B1F',
+
+        surface: '#FFFBFE',
+        onSurface: '#1C1B1F',
+
+        surfaceVariant: '#E7E0EC',
+        onSurfaceVariant: '#49454E',
+
+        inverseSurface: '#2f3033',
+        inverseOnSurface: '#f0f0f3',
+
+        inversePrimary: '#97cbff',
+
+        outline: '#79747E',
+        shadow: '#000000',
+    },
+    dark: {
+        primary: '#D0BCFF',
+        onPrimary: '#371E73',
+
+        primaryContainer: '#4F378B',
+        onPrimaryContainer: '#EADDFF',
+
+        secondary: '#CCC2DC',
+        onSecondary: '#332D41',
+
+        secondaryContainer: '#4A4458',
+        onSecondaryContainer: '#E8DEF8',
+
+        tertiary: '#EFB8C8',
+        onTertiary: '#492532',
+
+        tertiaryContainer: '#633B48',
+        onTertiaryContainer: '#FFD8E4',
+
+        error: '#F2B8B5',
+        onError: '#601410',
+
+        errorContainer: '#8C1D18',
+        onErrorContainer: '#F9DEDC',
+
+        background: '#1C1B1F',
+        onBackground: '#E6E1E5',
+
+        surface: '#1C1B1F',
+        onSurface: '#E6E1E5',
+
+        surfaceVariant: '#49454F',
+        onSurfaceVariant: '#CAC4D0',
+
+        inverseSurface: '#E6E1E5',
+        inverseOnSurface: '#313033',
+
+        inversePrimary: '#6750A4',
+
+        outline: '#938F99',
+        shadow: '#000000',
+    },
+};
 
 declare module '@mui/material/styles/createPalette' {
     //* MY = Material You
@@ -78,128 +246,128 @@ declare module '@mui/material/Fab' {
     }
 }
 
-export const getDesignTokens = (mode: 'light' | 'dark', scheme: ColorScheme) => {
+export const getDesignTokens = (mode: M3ThemeMode, scheme: M3ColorTokens) => {
     return ({
         palette: {
             mode,
             primary: {
-                main: scheme[mode].primary,
-                contrastText: scheme[mode].onPrimary
+                main: scheme.primary,
+                contrastText: scheme.onPrimary
             },
             onPrimary: {
-                main: scheme[mode].onPrimary,
-                contrastText: scheme[mode].primary
+                main: scheme.onPrimary,
+                contrastText: scheme.primary
             },
             primaryContainer: {
-                main: scheme[mode].primaryContainer,
-                contrastText: scheme[mode].onPrimaryContainer
+                main: scheme.primaryContainer,
+                contrastText: scheme.onPrimaryContainer
             },
             onPrimaryContainer: {
-                main: scheme[mode].onPrimaryContainer,
-                contrastText: scheme[mode].primaryContainer
+                main: scheme.onPrimaryContainer,
+                contrastText: scheme.primaryContainer
             },
             secondary: {
-                main: scheme[mode].secondary,
-                contrastText: scheme[mode].onSecondary
+                main: scheme.secondary,
+                contrastText: scheme.onSecondary
             },
             onSecondary: {
-                main: scheme[mode].onSecondary,
-                contrastText: scheme[mode].secondary
+                main: scheme.onSecondary,
+                contrastText: scheme.secondary
             },
             secondaryContainer: {
-                main: scheme[mode].secondaryContainer,
-                contrastText: scheme[mode].onSecondaryContainer
+                main: scheme.secondaryContainer,
+                contrastText: scheme.onSecondaryContainer
             },
             onSecondaryContainer: {
-                main: scheme[mode].onSecondaryContainer,
-                contrastText: scheme[mode].secondaryContainer
+                main: scheme.onSecondaryContainer,
+                contrastText: scheme.secondaryContainer
             },
             tertiary: {
-                main: scheme[mode].tertiary,
-                contrastText: scheme[mode].onTertiary
+                main: scheme.tertiary,
+                contrastText: scheme.onTertiary
             },
             onTertiary: {
-                main: scheme[mode].onTertiary,
-                contrastText: scheme[mode].tertiary
+                main: scheme.onTertiary,
+                contrastText: scheme.tertiary
             },
             tertiaryContainer: {
-                main: scheme[mode].tertiaryContainer,
-                contrastText: scheme[mode].onTertiaryContainer
+                main: scheme.tertiaryContainer,
+                contrastText: scheme.onTertiaryContainer
             },
             onTertiaryContainer: {
-                main: scheme[mode].onTertiaryContainer,
-                contrastText: scheme[mode].tertiary
+                main: scheme.onTertiaryContainer,
+                contrastText: scheme.tertiary
             },
             error: {
-                main: scheme[mode].error,
-                contrastText: scheme[mode].onError
+                main: scheme.error,
+                contrastText: scheme.onError
             },
             onError: {
-                main: scheme[mode].onError,
-                contrastText: scheme[mode].error
+                main: scheme.onError,
+                contrastText: scheme.error
             },
             errorContainer: {
-                main: scheme[mode].errorContainer,
-                contrastText: scheme[mode].onErrorContainer
+                main: scheme.errorContainer,
+                contrastText: scheme.onErrorContainer
             },
             onErrorContainer: {
-                main: scheme[mode].onErrorContainer,
-                contrastText: scheme[mode].errorContainer
+                main: scheme.onErrorContainer,
+                contrastText: scheme.errorContainer
             },
             background2: {
-                main: scheme[mode].background,
-                contrastText: scheme[mode].onBackground
+                main: scheme.background,
+                contrastText: scheme.onBackground
             },
             onBackground: {
-                main: scheme[mode].onBackground,
-                contrastText: scheme[mode].background
+                main: scheme.onBackground,
+                contrastText: scheme.background
             },
             surface: {
-                main: scheme[mode].surface,
-                contrastText: scheme[mode].onSurface
+                main: scheme.surface,
+                contrastText: scheme.onSurface
             },
             onSurface: {
-                main: scheme[mode].onSurface,
-                contrastText: scheme[mode].surface
+                main: scheme.onSurface,
+                contrastText: scheme.surface
             },
             surfaceVariant: {
-                main: scheme[mode].surfaceVariant,
-                contrastText: scheme[mode].onSurfaceVariant
+                main: scheme.surfaceVariant,
+                contrastText: scheme.onSurfaceVariant
             },
             onSurfaceVariant: {
-                main: scheme[mode].onSurfaceVariant,
-                contrastText: scheme[mode].surfaceVariant
+                main: scheme.onSurfaceVariant,
+                contrastText: scheme.surfaceVariant
             },
             inverseSurface: {
-                main: scheme[mode].inverseSurface,
-                contrastText: scheme[mode].inverseOnSurface
+                main: scheme.inverseSurface,
+                contrastText: scheme.inverseOnSurface
             },
             inverseOnSurface: {
-                main: scheme[mode].inverseOnSurface,
-                contrastText: scheme[mode].inverseSurface
+                main: scheme.inverseOnSurface,
+                contrastText: scheme.inverseSurface
             },
             inversePrimary: {
-                main: scheme[mode].inversePrimary,
-                contrastText: scheme[mode].primary
+                main: scheme.inversePrimary,
+                contrastText: scheme.primary
             },
 
-            surfaceTint: scheme[mode].primary,
-            outline: scheme[mode].outline,
-            shadow: scheme[mode].shadow,
+            surfaceTint: scheme.primary,
+            outline: scheme.outline,
+            shadow: scheme.shadow,
 
             background: {
-                default: scheme[mode].background,
-                paper: scheme[mode].surface
+                default: scheme.background,
+                paper: scheme.surface
             },
             common: {
-                white: scheme[mode].background,
-                black: scheme[mode].onBackground,
+                white: scheme.background,
+                black: scheme.onBackground,
             },
             text: {
-                primary: scheme[mode].onPrimaryContainer,
-                secondary: scheme[mode].onSecondaryContainer,
+                primary: scheme.onPrimaryContainer,
+                secondary: scheme.onSecondaryContainer,
             },
-            divider: scheme[mode].outline
+            divider: scheme.outline
         },
         typography: {
             fontFamily: 'Roboto'
@@ -223,10 +391,36 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
                     }
                 }
             },
+            MuiChip: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: '10px',
+                        fontWeight: '600'
+                    },
+                    outlined: {
+                        borderColor: theme.palette.outline,
+                        color: theme.palette.onSurface.main,
+                        '& .MuiChip-icon, & .MuiChip-deleteIcon': {
+                            color: theme.palette.primary.main
+                        },
+                    },
+                    filled: {
+                        color: theme.palette.onSurfaceVariant.main,
+                        background: theme.palette.secondaryContainer.main,
+                        '& .MuiChip-icon, & .MuiChip-deleteIcon': {
+                            color: theme.palette.onSurfaceVariant.main
+                        },
+                        '&:hover': {
+                            //boxShadow: theme.shadows[1],
+                            background: darken(theme.palette.secondaryContainer.main, 0.08),
+                        }
+                    }
+                }
+            },
             MuiAppBar: {
                 styleOverrides: {
                     root: {
-                        backgroundColor: theme.palette.surface.main,
+                        background: theme.palette.surface.main,
                         color: theme.palette.onSurface.main,
                         transition: theme.transitions.create(
                             ['background-color', 'box-shadow', 'color'],
@@ -236,8 +430,8 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
                         ),
                     },
                     colorPrimary: {
-                        backgroundColor: alpha(theme.palette.secondaryContainer.main, 0.95),
-                        color: theme.palette.onSecondaryContainer.main,
+                        background: theme.palette.secondaryContainer.main,
+                        color: theme.palette.secondaryContainer.contrastText,
                         transition: theme.transitions.create(
                             ['background-color', 'box-shadow', 'color'],
                             {
@@ -250,7 +444,7 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
             MuiButton: {
                 styleOverrides: {
                     root: {
-                        borderRadius: '100px',
+                        borderRadius: '25px',
                         textTransform: 'none'
                     },
                     outlined: {

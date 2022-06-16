@@ -1,28 +1,29 @@
 
+import { FC } from 'react';
+
 import { CssBaseline } from '@mui/material';
-import { FunctionComponent, useContext } from 'react';
+import { Outlet } from 'react-router';
 
-import { PaletteContext, PaletteContextType } from './context/ui/PaletteContext';
-import { ColorContext, ColorContextType } from './context/ui/ColorContext';
-
-import MYThemeProvider from './theme/MYThemeProvider';
+import ThemeModeProvider from './theme/context/ThemeModeContext';
+import ThemeSchemeProvider from './theme/context/ThemeSchemeContext';
+import M3ThemeProvider from './theme/m3/M3ThemeProvider';
 
 import Layout from './layout/Layout';
-import Home from './pages/Home/Home';
 
 
-const App: FunctionComponent = () => {
-  // ColorProvider => PaletteProvider => ThemeProvider
-  const { paletteMode } = useContext<PaletteContextType>(PaletteContext);
-  const { colorScheme } = useContext<ColorContextType>(ColorContext);
-
+const App: FC = () => {
   return (
-    <MYThemeProvider mode={paletteMode} colorScheme={colorScheme} >
-      <CssBaseline />
-      <Layout>
-        <Home />
-      </Layout>
-    </MYThemeProvider>
+    <ThemeModeProvider>
+      <ThemeSchemeProvider>
+        <M3ThemeProvider>
+          <CssBaseline enableColorScheme />
+          <Layout>
+            <Outlet />
+          </Layout>
+        </M3ThemeProvider>
+      </ThemeSchemeProvider>
+    </ThemeModeProvider>
+
   )
 }
 

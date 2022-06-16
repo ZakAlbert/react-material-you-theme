@@ -1,14 +1,14 @@
-import { useEffect } from 'react';
+
 import { useState } from 'react';
-import { ThemeColor } from '../@types/MaterialPalette';
 
 import 'material-dynamic-colors';
-import { DefaultThemeColor } from '../model/default-theme-color';
 
 export const DefaultColor: string = '#6750A4';
 
-const useDynamicColor = (): [ThemeColor, (color: string) => {}] => {
-    const [themeColors, setThemeColors] = useState<ThemeColor>(DefaultThemeColor);
+//TODO: CREAR HOOK PARA GENERAR LOS COLORES DEL TEMA USADOS EN M3ThemeProvider
+const useDynamicColor = () => {
+
+    const [themeColors, setThemeColors] = useState();
 
     /*useEffect(() => {
         const getColors = async () => {
@@ -18,8 +18,6 @@ const useDynamicColor = (): [ThemeColor, (color: string) => {}] => {
     }, []);*/
 
     const generateThemeColors = async (value: string) => {
-        const colors = await materialDynamicColors(value);
-        setThemeColors(colors);
     };
 
     return [themeColors, generateThemeColors];

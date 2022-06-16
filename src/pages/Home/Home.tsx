@@ -1,20 +1,32 @@
 import { useContext, useState } from "react";
 
-import { Button, Card, CardContent, TextField, Fab, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Stack, Typography, CardActions, BottomNavigation, BottomNavigationAction } from '@mui/material';
+import {
+    Button,
+    Card,
+    CardContent,
+    TextField,
+    Fab,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Select,
+    SelectChangeEvent,
+    Stack,
+    Typography,
+    CardActions,
+    Grid,
+} from '@mui/material';
 
 import EditIcon from '@mui/icons-material/EditTwoTone';
 import FavoriteIcon from '@mui/icons-material/FavoriteTwoTone';
 import NavigationIcon from '@mui/icons-material/NavigationTwoTone';
 import GpsFixedTwoTone from '@mui/icons-material/GpsFixedTwoTone';
 
-import { PaletteContext, PaletteContextType } from '../../context/ui/PaletteContext';
-import { Grid } from "@mui/material";
-import ColorSystem from "../../components/ColorSystem";
+import { ThemeModeContext } from '../../theme/context/ThemeModeContext';
 
 const Home = () => {
 
-    const { paletteMode } = useContext<PaletteContextType>(PaletteContext);
-    //const { colorScheme } = useContext<ColorContextType>(ColorContext);
+    const { themeMode } = useContext(ThemeModeContext);
 
     const [age, setAge] = useState('');
 
@@ -25,7 +37,7 @@ const Home = () => {
     return (
         <Stack spacing={2}>
             <Stack marginBottom={3}>
-                <Typography sx={{ fontWeight: 'bold', fontSize: '2rem' }}>Material You - {paletteMode}</Typography>
+                <Typography sx={{ fontWeight: 'bold', fontSize: '2rem' }}>Material You - {themeMode}</Typography>
                 <Typography sx={{ fontWeight: '500' }}>@ZakAlbert94</Typography>
             </Stack>
 
@@ -56,7 +68,11 @@ const Home = () => {
                         <Fab variant="surface" title='Surface'><EditIcon /></Fab>
                         <Fab variant="secondary" title='Secondary'><EditIcon /></Fab>
                         <Fab variant="tertiary" title='Tertiary' ><EditIcon /></Fab>
-
+                        <Fab disabled aria-label="like">
+                            <FavoriteIcon />
+                        </Fab>
+                    </Stack>
+                    <Stack direction="row" spacing={2} marginBottom={3}>
                         <Fab variant='extended' color='primary'>
                             <NavigationIcon sx={{ mr: 1 }} />
                             Navigate
@@ -72,9 +88,6 @@ const Home = () => {
                         <Fab variant="extended" color='tertiary' >
                             <NavigationIcon sx={{ mr: 1 }} />
                             Navigate
-                        </Fab>
-                        <Fab disabled aria-label="like">
-                            <FavoriteIcon />
                         </Fab>
                     </Stack>
                 </Grid>
@@ -123,7 +136,6 @@ const Home = () => {
                         </Card>
                     </Stack>
                 </Grid>
-
                 <Grid item xs="auto">
                     <Typography variant='h4' marginBottom={2}>Text Fields</Typography>
                     <Stack direction="row" spacing={2} marginBottom={0}>
@@ -224,59 +236,7 @@ const Home = () => {
                         </FormControl>
                     </Stack>
                 </Grid>
-                <Grid item xs={12}>
-
-                    <ColorSystem />
-                </Grid>
             </Grid>
-
-
-            {/*  <Card elevation={3}>
-                <CardContent>
-                    <Stack
-                        direction="row" spacing={2} rowGap={2}
-                        sx={{
-                            display: 'flex',
-                            flexWrap: 'wrap',
-                        }}
-                    >
-                        <Paper variant="outlined" sx={{ width: 120, height: 120 }} />
-                        {[...Array(24).keys()].map(idx =>
-                            <Paper key={idx} elevation={idx} sx={{ width: 120, height: 120, display: 'flex', justifyContent: "center", alignItems: 'center' }}>
-                                <Typography variant="subtitle1">{idx}</Typography>
-                            </Paper>
-                        )}
-                    </Stack>
-                </CardContent>
-            </Card> */}
-
-            {/*  <Card elevation={3}>
-                <CardContent>
-                    <Grid container spacing={2}>
-                        <Grid item xs={6}>
-                            {Object.entries(colorScheme.light).map(([key, colors]) => {
-
-                                return (
-                                    <Box key={key} sx={{ background: colors, padding: 1, transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' }}>
-                                        <Typography>{key}</Typography>
-                                        <Typography>{colors}</Typography>
-                                    </Box>
-                                )
-                            })}
-                        </Grid>
-                        <Grid item xs={6}>
-                            {Object.entries(colorScheme.dark).map(([key, colors]) => {
-                                return (
-                                    <Box key={key} sx={{ padding: 1, background: colors, transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms' }}>
-                                        <Typography>{key}</Typography>
-                                        <Typography>{colors}</Typography>
-                                    </Box>
-                                )
-                            })}
-                        </Grid>
-                    </Grid>
-                </CardContent>
-            </Card> */}
         </Stack >
     )
 }

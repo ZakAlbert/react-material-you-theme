@@ -1,9 +1,9 @@
-import { FC, useContext, useState, } from "react";
-import { AppBar, Toolbar, Box, Container, SxProps, Typography, Theme, IconButton, Badge } from "@mui/material";
+import { FC, useContext } from "react";
+import { styled, useTheme } from '@mui/material/styles';
+
+import { AppBar, Toolbar, Box, Container, SxProps, Typography, Theme, IconButton, Badge, Button } from "@mui/material";
 
 import ElevationToolbar from "../components/ElevationToolbar";
-
-import { styled, } from '@mui/material/styles';
 
 import ColorIcon from '@mui/icons-material/ColorLensTwoTone';
 import DarkIcon from '@mui/icons-material/DarkModeTwoTone';
@@ -13,8 +13,9 @@ import NotificationIcon from '@mui/icons-material/NotificationsTwoTone';
 import RestartAltTwoToneIcon from '@mui/icons-material/RestartAltTwoTone';
 import MenuIcon from '@mui/icons-material/MenuTwoTone';
 
-import { PaletteContext, PaletteContextType } from '../context/ui/PaletteContext';
-import { ColorContext, ColorContextType } from "../context/ui/ColorContext";
+import { ThemeModeContext } from '../theme/context/ThemeModeContext';
+import { ThemeSchemeContext } from '../theme/context/ThemeSchemeContext';
+import { Link } from "react-router-dom";
 
 interface LayoutProps {
     window?: () => Window;
@@ -30,27 +31,25 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
         width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-        bgcolor: 'background.default',
-        color: 'text.primary',
         p: 3,
     };
 
-    const { paletteMode, togglePalette, resetPaletteMode } = useContext<PaletteContextType>(PaletteContext);
-    const { generateColorScheme, resetColorScheme } = useContext<ColorContextType>(ColorContext);
+    const { themeMode, toggleThemeMode, resetThemeMode } = useContext(ThemeModeContext);
+    const { generateThemeScheme, resetThemeScheme } = useContext(ThemeSchemeContext);
 
-    const changePalette = () => togglePalette();
+    const changeThemeMode = () => toggleThemeMode();
 
-    const changeColorScheme = async () => {
+    const changeThemeScheme = async () => {
         const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-        console.log(randomColor);
-        generateColorScheme(randomColor);
+        generateThemeScheme(randomColor);
     };
 
     const reset = () => {
-        resetPaletteMode();
-        resetColorScheme();
-        //generateColorScheme("#293064");
-        //generateColorScheme("#3a691e");
+        resetThemeMode();
+        resetThemeScheme();
+        generateThemeScheme("#6750A4");
+        //generateThemeScheme("#293064");
+        //generateThemeScheme("#3a691e");
     };
 
     return <>
@@ -60,9 +59,15 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
                     <IconButton color="inherit" size="large" edge="start">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" align="center" component="div" sx={{ flexGrow: 1 }}>
-                        Material You (ReactTS)
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        Material You
                     </Typography>
+                    <Button component={Link} to='/Components' color="inherit" >
+                        Components
+                    </Button>
+                    <Button component={Link} to='/ThemeData' color="inherit">
+                        Theme Data
+                    </Button>
                     <IconButton color="inherit" size="large" title="1 Message">
                         <Badge badgeContent="1" color="primary">
                             <MailIcon />
@@ -73,11 +78,11 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
                             <NotificationIcon />
                         </Badge>
                     </IconButton>
-                    <IconButton size='large' color='inherit' title='Change Color' onClick={changeColorScheme}>
+                    <IconButton size='large' color='inherit' title='Change Color' onClick={changeThemeScheme}>
                         <ColorIcon />
                     </IconButton>
-                    <IconButton size='large' color='inherit' title='Switch Theme' onClick={changePalette}>
-                        {paletteMode == 'light' ? <DarkIcon /> : <LightIcon />}
+                    <IconButton size='large' color='inherit' title='Switch Theme' onClick={changeThemeMode}>
+                        {themeMode == 'light' ? <DarkIcon /> : <LightIcon />}
                     </IconButton>
                     <IconButton size='large' color='inherit' title='Reset Theme' onClick={reset}>
                         <RestartAltTwoToneIcon />
@@ -87,7 +92,7 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
         </ElevationToolbar>
         <Offset />
         <Box sx={boxContainerStyle}>
-            <Container>
+            <Container maxWidth="lg">
                 {children}
             </Container>
         </Box>
