@@ -11,7 +11,6 @@ Aplicacion React y MUI aplicando el esquema de colores de Android Material You
 ![color System](./src/screenshots/00_color_system.png "Color System")
 
 
-## Tema y estilos generados dinamicamente en base al color azul
 ### Light
 ![blue light](./src/screenshots/05_blue_light_mui.png "Blue Light")
 
