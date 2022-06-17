@@ -1,30 +1,24 @@
 import { createContext, FC, ReactNode, useEffect, useState } from "react";
 import { M3ThemeScheme, DEFAULT_M3_THEME_SCHEME } from '../m3/M3Theme';
-import { argbFromHex, hexFromArgb, themeFromSourceColor } from '@material/material-color-utilities';
-
-import 'material-dynamic-colors';
+import { argbFromHex, hexFromArgb, themeFromImage, themeFromSourceColor } from '@material/material-color-utilities';
 
 export interface ThemeSchemeContextType {
     themeScheme: M3ThemeScheme,
-    //themeHCTColor: M3ThemeHCT,
     generateThemeScheme: (base: string) => void,
     resetThemeScheme: () => void
 };
 
 export const ThemeSchemeContext = createContext<ThemeSchemeContextType>({
     themeScheme: DEFAULT_M3_THEME_SCHEME,
-    //themeHCTColor: DEFAULT_M3_THEME_HCT,
     generateThemeScheme: async (base: string) => { },
     resetThemeScheme: () => { }
 });
 
 const THEME_SCHEME_KEY = 'ThemeScheme';
-//const THEME_HCT_KEY = 'ThemeHCT';
 
 const ThemeSchemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const [themeScheme, setThemeScheme] = useState<M3ThemeScheme>(DEFAULT_M3_THEME_SCHEME);
-    //const [themeHCTColor, setThemeHCT] = useState<M3ThemeHCT>(DEFAULT_M3_THEME_HCT);
 
     useEffect(() => {
         if (localStorage.getItem(THEME_SCHEME_KEY)) {
@@ -36,6 +30,14 @@ const ThemeSchemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const generateThemeScheme = async (colorBase: string) => {
 
         const theme = themeFromSourceColor(argbFromHex(colorBase));
+
+        /*let theme = undefined;
+        if (typeof colorBase == 'string') {
+            theme = themeFromSourceColor(argbFromHex(colorBase));
+        }
+        else {
+            theme = await themeFromImage(colorBase);
+        }*/
 
         const paletteTones: any = {};
         const light: any = {};

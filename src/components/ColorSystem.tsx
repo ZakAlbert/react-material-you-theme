@@ -190,31 +190,37 @@ const ColorSystem = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Typography variant='h4' marginBottom={2} >Color Tones</Typography>
-            <Grid container columns={1}>
-                <Grid item xs={1}>
-                    {
-                        Object.entries(JSON.parse(JSON.stringify(tones))).map(([k, v]) => {
-                            return (
-                                <>
-                                    <Typography variant='h5' marginBottom={2} >{k}</Typography>
-                                    <Grid container columns={13} marginBottom={2}>
-                                        {
-                                            Object.entries(JSON.parse(JSON.stringify(v))).map(([k1, v1]: any) => {
-                                                return (
-                                                    <Grid item xs={1}>
-                                                        <ColorBox title={k1} color={v1} onColor={theme.palette.getContrastText(v1)} />
-                                                    </Grid>
-                                                )
-                                            })
-                                        }
-                                    </Grid>
-                                </>
-                            );
-                        })
-                    }
-                </Grid>
-            </Grid>
+            {tones &&
+                (
+                    <>
+                        <Typography variant='h4' marginBottom={2} >Color Tones</Typography>
+                        <Grid container columns={1}>
+                            <Grid item xs={1}>
+                                {
+                                    Object.entries(JSON.parse(JSON.stringify(tones))).map(([k, v]) => {
+                                        return (
+                                            <Box key={k}>
+                                                <Typography variant='h5' marginBottom={2} >{k}</Typography>
+                                                <Grid container columns={13} marginBottom={2}>
+                                                    {
+                                                        Object.entries(JSON.parse(JSON.stringify(v))).map(([k1, v1]: any) => {
+                                                            return (
+                                                                <Grid item xs={1} key={k1}>
+                                                                    <ColorBox title={k1} color={v1} onColor={theme.palette.getContrastText(v1)} />
+                                                                </Grid>
+                                                            )
+                                                        })
+                                                    }
+                                                </Grid>
+                                            </Box>
+                                        );
+                                    })
+                                }
+                            </Grid>
+                        </Grid>
+                    </>
+                )
+            }
         </>
     );
 }

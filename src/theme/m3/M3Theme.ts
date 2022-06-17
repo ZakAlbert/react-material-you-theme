@@ -364,14 +364,13 @@ export const getDesignTokens = (mode: M3ThemeMode, scheme: M3ColorTokens) => {
                 black: scheme.onBackground,
             },
             text: {
-                primary: scheme.onPrimaryContainer,
+                primary: scheme.onSurface,
                 secondary: scheme.onSecondaryContainer,
+
             },
             divider: scheme.outline
         },
-        typography: {
-            fontFamily: 'Roboto'
-        },
+
 
     } as ThemeOptions);
 };

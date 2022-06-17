@@ -12,6 +12,7 @@ import MailIcon from '@mui/icons-material/MailTwoTone';
 import NotificationIcon from '@mui/icons-material/NotificationsTwoTone';
 import RestartAltTwoToneIcon from '@mui/icons-material/RestartAltTwoTone';
 import MenuIcon from '@mui/icons-material/MenuTwoTone';
+import AndroidIcon from '@mui/icons-material/AndroidTwoTone';
 
 import { ThemeModeContext } from '../theme/context/ThemeModeContext';
 import { ThemeSchemeContext } from '../theme/context/ThemeSchemeContext';
@@ -47,50 +48,65 @@ const Layout: FC<LayoutProps> = ({ children, window }) => {
     const reset = () => {
         resetThemeMode();
         resetThemeScheme();
-        generateThemeScheme("#6750A4");
+        //generateThemeScheme("#6750A4");
         //generateThemeScheme("#293064");
         //generateThemeScheme("#3a691e");
     };
 
     return <>
         <ElevationToolbar window={window} >
-            <AppBar enableColorOnDark position="fixed" color="primary">
-                <Toolbar>
-                    <IconButton color="inherit" size="large" edge="start">
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Material You
-                    </Typography>
-                    <Button component={Link} to='/Components' color="inherit" >
-                        Components
-                    </Button>
-                    <Button component={Link} to='/ThemeData' color="inherit">
-                        Theme Data
-                    </Button>
-                    <IconButton color="inherit" size="large" title="1 Message">
-                        <Badge badgeContent="1" color="primary">
-                            <MailIcon />
-                        </Badge>
-                    </IconButton>
-                    <IconButton color="inherit" size="large" title="4 Notifications">
-                        <Badge badgeContent={4} color="secondary">
-                            <NotificationIcon />
-                        </Badge>
-                    </IconButton>
-                    <IconButton size='large' color='inherit' title='Change Color' onClick={changeThemeScheme}>
-                        <ColorIcon />
-                    </IconButton>
-                    <IconButton size='large' color='inherit' title='Switch Theme' onClick={changeThemeMode}>
-                        {themeMode == 'light' ? <DarkIcon /> : <LightIcon />}
-                    </IconButton>
-                    <IconButton size='large' color='inherit' title='Reset Theme' onClick={reset}>
-                        <RestartAltTwoToneIcon />
-                    </IconButton>
-                </Toolbar>
+            <AppBar enableColorOnDark position="sticky" color="primary">
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters>
+                        <AndroidIcon color="inherit" sx={{ display: 'flex', mr: 1 }} />
+                        <Typography
+                            variant="h6"
+                            noWrap
+                            component="a"
+                            href="/"
+                            sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontWeight: 700,
+                                color: 'inherit',
+                                textDecoration: 'none',
+                            }}
+                        >
+                            Material You
+                        </Typography>
+                        <Box sx={{ flexGrow: 1, display: 'flex' }}>
+                            <Button component={Link} to='/Components' color="inherit" >
+                                Components
+                            </Button>
+                            <Button component={Link} to='/ThemeData' color="inherit">
+                                Theme Data
+                            </Button>
+                        </Box>
+                        <Box sx={{ flexGrow: 0 }}>
+                            <IconButton size='large' color='inherit' title='Change Color' onClick={changeThemeScheme}>
+                                <ColorIcon />
+                            </IconButton>
+                            <IconButton size='large' color='inherit' title='Switch Theme' onClick={changeThemeMode}>
+                                {themeMode == 'light' ? <DarkIcon /> : <LightIcon />}
+                            </IconButton>
+                            <IconButton size='large' color='inherit' title='Reset Theme' onClick={reset}>
+                                <RestartAltTwoToneIcon />
+                            </IconButton>
+                            <IconButton color="inherit" size="large" title="1 Message">
+                                <Badge badgeContent="1" color="primary">
+                                    <MailIcon />
+                                </Badge>
+                            </IconButton>
+                            <IconButton color="inherit" size="large" title="4 Notifications">
+                                <Badge badgeContent={4} color="secondary">
+                                    <NotificationIcon />
+                                </Badge>
+                            </IconButton>
+                        </Box>
+                    </Toolbar>
+                </Container>
             </AppBar>
         </ElevationToolbar>
-        <Offset />
         <Box sx={boxContainerStyle}>
             <Container maxWidth="lg">
                 {children}

@@ -36,15 +36,13 @@ const Home = () => {
 
     return (
         <Stack spacing={2}>
-            <Stack marginBottom={3}>
-                <Typography sx={{ fontWeight: 'bold', fontSize: '2rem' }}>Material You - {themeMode}</Typography>
-                <Typography sx={{ fontWeight: '500' }}>@ZakAlbert94</Typography>
+            <Stack marginBottom={1}>
+                <Typography sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>@ZakAlbert94 - {themeMode.toLocaleUpperCase()}</Typography>
             </Stack>
 
             <Grid container rowGap={1} gap={6} >
                 <Grid item xs="auto">
                     <Typography variant='h4' marginBottom={2}>Buttons</Typography>
-
                     <Stack spacing={2} direction="row" marginBottom={3}>
                         <Button variant="elevated" >Elevated</Button>
                         <Button variant="filled">Filled</Button>
