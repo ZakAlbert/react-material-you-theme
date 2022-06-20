@@ -225,6 +225,10 @@ declare module '@mui/material/Button' {
         filled: true;
         tonal: true;
     }
+    interface ButtonPropsColorOverrides {
+        tertiary: true;
+        surface: true;
+    }
 }
 
 declare module '@mui/material/Paper' {
@@ -386,35 +390,43 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
             MuiDivider: {
                 styleOverrides: {
                     root: {
-                        borderColor: theme.palette.outline
+                        borderColor: theme.palette.outline,
+                        backgroundColor: theme.palette.outline
                     }
                 }
             },
-            MuiChip: {
+            MuiIconButton: {
                 styleOverrides: {
                     root: {
-                        borderRadius: '10px',
-                        fontWeight: '600'
+                        padding: theme.spacing(1),
                     },
-                    outlined: {
-                        borderColor: theme.palette.outline,
-                        color: theme.palette.onSurface.main,
-                        '& .MuiChip-icon, & .MuiChip-deleteIcon': {
-                            color: theme.palette.primary.main
+                },
+            },
+            MuiTabs: {
+                styleOverrides: {
+                    root: {
+                        marginLeft: theme.spacing(1),
+                    },
+                    indicator: {
+                        height: 3,
+                        borderTopLeftRadius: 3,
+                        borderTopRightRadius: 3,
+                    },
+                },
+            },
+            MuiTab: {
+                styleOverrides: {
+                    root: {
+                        textTransform: 'none',
+                        margin: '0 16px',
+                        minWidth: 0,
+                        padding: 0,
+                        [theme.breakpoints.up('md')]: {
+                            padding: 0,
+                            minWidth: 0,
                         },
                     },
-                    filled: {
-                        color: theme.palette.onSurfaceVariant.main,
-                        background: theme.palette.secondaryContainer.main,
-                        '& .MuiChip-icon, & .MuiChip-deleteIcon': {
-                            color: theme.palette.onSurfaceVariant.main
-                        },
-                        '&:hover': {
-                            //boxShadow: theme.shadows[1],
-                            background: darken(theme.palette.secondaryContainer.main, 0.08),
-                        }
-                    }
-                }
+                },
             },
             MuiAppBar: {
                 styleOverrides: {
@@ -428,9 +440,19 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
                             },
                         ),
                     },
+                    colorDefault: {
+                        background: theme.palette.surface.main,
+                        color: theme.palette.onSurface.main,
+                        transition: theme.transitions.create(
+                            ['background-color', 'box-shadow', 'color'],
+                            {
+                                duration: theme.transitions.duration.short,
+                            },
+                        ),
+                    },
                     colorPrimary: {
-                        background: theme.palette.secondaryContainer.main,
-                        color: theme.palette.secondaryContainer.contrastText,
+                        background: theme.palette.mode == 'light' ? lighten(theme.palette.primary.main, 0.85) : darken(theme.palette.primary.main, 0.8),
+                        color: theme.palette.surface.contrastText,
                         transition: theme.transitions.create(
                             ['background-color', 'box-shadow', 'color'],
                             {
@@ -443,13 +465,14 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
             MuiButton: {
                 styleOverrides: {
                     root: {
-                        borderRadius: '25px',
-                        textTransform: 'none'
+                        borderRadius: '50px',
+                        textTransform: 'none',
+                        fontWeight: 'bold'
                     },
                     outlined: {
                         borderColor: theme.palette.outline,
-                        background: theme.palette.surface.main,
-                    }
+                        //background: theme.palette.surface.main,
+                    },
                 },
                 variants: [
                     {
@@ -673,17 +696,77 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
             MuiPaper: {
                 styleOverrides: {
                     root: {
-                        backgroundColor: theme.palette.mode === 'dark' ?
+                        background: theme.palette.mode === 'dark' ?
                             darken(theme.palette.primary.main, 0.9) :
                             lighten(theme.palette.primary.main, 0.9),
                         color: theme.palette.onSurface.main
                     },
                     outlined: {
                         borderColor: theme.palette.outline,
-                        backgroundColor: theme.palette.surface.main,
+                        background: theme.palette.surface.main,
                     }
                 },
             },
+            MuiDrawer: {
+                styleOverrides: {
+                    root: {
+                        //background: theme.palette.surface.main,
+                        //color: theme.palette.onSurface.main,
+                    },
+                    paper: {
+                        border: '0px',
+                        //background: theme.palette.mode == 'light' ? lighten(theme.palette.primary.main, 0.85) : darken(theme.palette.primary.main, 0.8),
+                        //color: theme.palette.surface.contrastText,
+                        background: theme.palette.surface.main,
+                        color: theme.palette.onSurface.main,
+                    }
+                }
+            },
+            MuiListItem: {
+                styleOverrides: {
+                    root: {
+                        paddingTop: 1,
+                        paddingBottom: 1,
+                        '& .MuiListItemButton-root': {
+                            paddingTop: 8,
+                            paddingBottom: 8
+                        }
+                    }
+                }
+            },
+            MuiListItemButton: {
+                styleOverrides: {
+                    root: {
+                        borderRadius: 50,
+                        '&.Mui-selected': {
+                            color: theme.palette.onSecondaryContainer.main,
+                            background: theme.palette.secondaryContainer.main,
+                            '& > .MuiListItemText-root > .MuiTypography-root': {
+                                fontWeight: 'bold'
+                            },
+                        }
+                    },
+                },
+            },
+            MuiListItemIcon: {
+                styleOverrides: {
+                    root: {
+                        color: 'inherit',
+                        minWidth: 32,
+                        '&.Mui-selected': {
+                            fontWeight: 'bold'
+                        },
+                    },
+                },
+            },
+            MuiTooltip: {
+                styleOverrides: {
+                    tooltip: {
+                        background: theme.palette.secondaryContainer.main,
+                        color: theme.palette.secondaryContainer.contrastText
+                    }
+                }
+            }
         }
     };
 };

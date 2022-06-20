@@ -36,10 +36,6 @@ const Home = () => {
 
     return (
         <Stack spacing={2}>
-            <Stack marginBottom={1}>
-                <Typography sx={{ fontWeight: 'bold', fontSize: '1.2rem' }}>@ZakAlbert94 - {themeMode.toLocaleUpperCase()}</Typography>
-            </Stack>
-
             <Grid container rowGap={1} gap={6} >
                 <Grid item xs="auto">
                     <Typography variant='h4' marginBottom={2}>Buttons</Typography>
