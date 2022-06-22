@@ -36,7 +36,7 @@ const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
     const reset = () => {
         resetThemeMode();
         resetThemeScheme();
-        //generateThemeScheme("#6750A4");
+        generateThemeScheme("#6750A4");
         //generateThemeScheme("#293064");
         //generateThemeScheme("#3a691e");
     };
