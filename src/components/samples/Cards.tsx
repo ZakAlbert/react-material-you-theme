@@ -131,6 +131,9 @@ const Cards: FC = () => {
                     </CardActions>
                 </Card>
             </BoxComponent>
+            <Typography variant="h6" >
+                Complex Cards
+            </Typography>
             <BoxComponent>
                 <Card sx={{ maxWidth: 345, px: 0, paddingTop: 0 }} variant="elevation">
                     <CardMedia sx={{ height: 0, paddingTop: '56.25%', borderRadius: 5 }}

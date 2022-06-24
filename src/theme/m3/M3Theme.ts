@@ -78,13 +78,6 @@ export interface M3ThemeScheme {
     tones?: M3ThemeTones
 }
 
-export const DEFAULT_M3_THEME_HCT = {
-    BaseColor: "#6750A4",
-    Chrome: "#00002f",
-    Hue: "#00012a",
-    Tone: "#000028"
-}
-
 export const DEFAULT_M3_THEME_SCHEME: M3ThemeScheme = {
     light: {
         primary: '#6750A4',
@@ -120,10 +113,10 @@ export const DEFAULT_M3_THEME_SCHEME: M3ThemeScheme = {
         surfaceVariant: '#E7E0EC',
         onSurfaceVariant: '#49454E',
 
-        inverseSurface: '#2f3033',
-        inverseOnSurface: '#f0f0f3',
+        inverseSurface: '#313033',
+        inverseOnSurface: '#F4EFF4',
 
-        inversePrimary: '#97cbff',
+        inversePrimary: '#D0BCFF',
 
         outline: '#79747E',
         shadow: '#000000',
@@ -173,7 +166,6 @@ export const DEFAULT_M3_THEME_SCHEME: M3ThemeScheme = {
 };
 
 declare module '@mui/material/styles/createPalette' {
-    //* MY = Material You
     interface Palette {
         //primary: string,
         onPrimary: PaletteColor,
@@ -218,7 +210,14 @@ declare module '@mui/material/styles/createPalette' {
         shadow: string,
     }
 }
-
+declare module '@mui/material/styles/createTheme' {
+    interface ThemeOptions {
+        tones?: M3ThemeTones
+    }
+    interface Theme {
+        tones?: M3ThemeTones
+    }
+}
 declare module '@mui/material/Button' {
     interface ButtonPropsVariantOverrides {
         elevated: true;
@@ -250,7 +249,7 @@ declare module '@mui/material/Fab' {
     }
 }
 
-export const getDesignTokens = (mode: M3ThemeMode, scheme: M3ColorTokens) => {
+export const getDesignTokens = (mode: M3ThemeMode, scheme: M3ColorTokens, tones?: M3ThemeTones) => {
     return ({
         palette: {
             mode,
@@ -343,15 +342,15 @@ export const getDesignTokens = (mode: M3ThemeMode, scheme: M3ColorTokens) => {
                 contrastText: scheme.surfaceVariant
             },
             inverseSurface: {
-                main: scheme.inverseSurface,
-                contrastText: scheme.inverseOnSurface
+                main: scheme.inverseSurface || (mode === 'light' ? tones?.neutral[20] : tones?.neutral[90]),
+                contrastText: scheme.inverseOnSurface || (mode === 'light' ? tones?.neutral[95] : tones?.neutral[20])
             },
             inverseOnSurface: {
-                main: scheme.inverseOnSurface,
-                contrastText: scheme.inverseSurface
+                main: scheme.inverseOnSurface || (mode === 'light' ? tones?.neutral[95] : tones?.neutral[20]),
+                contrastText: scheme.inverseSurface || (mode === 'light' ? tones?.neutral[20] : tones?.neutral[90])
             },
             inversePrimary: {
-                main: scheme.inversePrimary,
+                main: scheme.inversePrimary || (mode === 'light' ? tones?.neutral[80] : tones?.neutral[40]),
                 contrastText: scheme.primary
             },
 
@@ -374,8 +373,7 @@ export const getDesignTokens = (mode: M3ThemeMode, scheme: M3ColorTokens) => {
             },
             divider: scheme.outline
         },
-
-
+        tones
     } as ThemeOptions);
 };
 
@@ -765,6 +763,110 @@ export const getThemedComponents = (theme: Theme): { components: Theme['componen
                         background: theme.palette.secondaryContainer.main,
                         color: theme.palette.secondaryContainer.contrastText
                     }
+                }
+            },
+            MuiAccordion: {
+                styleOverrides: {
+                    root: {
+                        '&:before': {
+                            backgroundColor: theme.palette.surfaceVariant.main
+                        },
+                        '&.Mui-disabled': {
+                            backgroundColor: theme.palette.inverseOnSurface.main,
+                            color: theme.palette.inverseSurface.main,
+                        }
+                    }
+                },
+            },
+            MuiSnackbarContent: {
+                styleOverrides: {
+                    root: {
+                        backgroundColor: theme.palette.inverseSurface.main,
+                    },
+                    message: {
+                        color: theme.palette.inverseOnSurface.main
+                    },
+                    action: {
+                        color: theme.palette.inversePrimary.main
+                    }
+                }
+            },
+            MuiSwitch: {
+                styleOverrides: {
+                    root: {
+                        width: 42,
+                        height: 26,
+                        padding: 0,
+                        marginLeft: 12,
+                        marginRight: 8,
+                        '& .MuiSwitch-switchBase': {
+                            padding: 0,
+                            margin: 7,
+                            transitionDuration: '100ms',
+                            '&.Mui-checked': {
+                                transform: 'translateX(16px)',
+                                margin: 4,
+                                '& + .MuiSwitch-track': {
+                                    backgroundColor: theme.palette.primary.main,
+                                    opacity: 1,
+                                    border: 0,
+                                },
+                                '& .MuiSwitch-thumb': {
+                                    color: theme.palette.onPrimary.main,
+                                    width: 18,
+                                    height: 18,
+                                },
+                                /*'& .MuiSwitch-thumb:before': {
+                                    backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 24 24"><path fill="${encodeURIComponent(
+                                        theme.palette.primary.main,
+                                    )}" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>')`,
+                                },
+                                '&.Mui-disabled .MuiSwitch-thumb:before': {
+                                    backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="12" width="12" viewBox="0 0 24 24"><path fill="${encodeURIComponent(
+                                        alpha(theme.palette.onSurfaceVariant.main, 0.28),
+                                    )}" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"/></svg>')`,
+                                },*/
+                                '&.Mui-disabled + .MuiSwitch-track': {
+                                    backgroundColor: alpha(theme.palette.onSurface.main, 0.1),
+                                },
+                                '&.Mui-disabled .MuiSwitch-thumb': {
+                                    color: alpha(theme.palette.surface.main, 0.8),
+                                },
+                            },
+                            '&.Mui-focusVisible .MuiSwitch-thumb': {
+                                color: theme.palette.primary.main,
+                                border: `6px solid ${theme.palette.primary.contrastText}`,
+                            },
+                            '&.Mui-disabled .MuiSwitch-thumb': {
+                                color: alpha(theme.palette.onSurface.main, 0.3),
+                            },
+                        },
+                        '& .MuiSwitch-thumb': {
+                            boxSizing: 'border-box',
+                            color: theme.palette.outline,
+                            width: 12,
+                            height: 12,
+                            '&:before': {
+                                content: "''",
+                                position: 'absolute',
+                                width: '100%',
+                                height: '100%',
+                                left: 0,
+                                top: 0,
+                                backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                            },
+                        },
+                        '& .MuiSwitch-track': {
+                            borderRadius: 26 / 2,
+                            border: `1px solid ${theme.palette.outline}`,
+                            backgroundColor: theme.palette.surfaceVariant.main,
+                            opacity: 1,
+                            transition: theme.transitions.create(['background-color'], {
+                                duration: 500,
+                            }),
+                        },
+                    },
                 }
             }
         }

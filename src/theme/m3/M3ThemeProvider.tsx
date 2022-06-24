@@ -18,7 +18,7 @@ const M3ThemeProvider: FC<M3ThemeProps> = ({ children }) => {
     const { themeScheme } = useContext(ThemeSchemeContext);
 
     const m3Theme = useMemo(() => {
-        const designTokens = getDesignTokens(themeMode, themeScheme[themeMode]);
+        const designTokens = getDesignTokens(themeMode, themeScheme[themeMode], themeScheme.tones);
         let newM3Theme = createTheme(designTokens);
         newM3Theme = deepmerge(newM3Theme, getThemedComponents(newM3Theme));
 

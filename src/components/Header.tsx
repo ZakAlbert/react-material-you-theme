@@ -36,7 +36,8 @@ const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
     const reset = () => {
         resetThemeMode();
         resetThemeScheme();
-        generateThemeScheme("#6750A4");
+
+        //generateThemeScheme("#6750A4");
         //generateThemeScheme("#293064");
         //generateThemeScheme("#3a691e");
     };
@@ -49,7 +50,7 @@ const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
 
     return (
         <>
-            <AppBar color={trigger ? 'primary' : 'default'} position="sticky" elevation={trigger ? 4 : 0} >
+            <AppBar color={trigger ? 'primary' : 'default'} position="sticky" elevation={trigger ? 2 : 0} >
                 <Toolbar>
                     <Grid container spacing={1} alignItems="center">
                         <Grid item sx={{ display: { md: 'none', sm: 'block' } }}>

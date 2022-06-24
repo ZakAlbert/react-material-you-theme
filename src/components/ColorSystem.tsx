@@ -90,7 +90,7 @@ const ColorSystem = () => {
                             <ColorBox title="Outline" color={light.outline} onColor={light.background} />
                         </Grid>
                     </Grid>
-                    <Grid container columns={16} marginBottom={1}>
+                    <Grid container columns={16} marginBottom={2}>
                         <Grid item xs={4}>
                             <ColorBox title="Error" color={light.error} onColor={light.onError} />
                         </Grid>
@@ -102,6 +102,17 @@ const ColorSystem = () => {
                         </Grid>
                         <Grid item xs={4}>
                             <ColorBox title="On Error Container" color={light.onErrorContainer} onColor={light.errorContainer} />
+                        </Grid>
+                    </Grid>
+                    <Grid container columns={12} marginBottom={2}>
+                        <Grid item xs={4}>
+                            <ColorBox title="Inverse Surface" color={light.inverseSurface} onColor={light.inverseOnSurface} />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <ColorBox title="Inverse On Surface" color={light.inverseOnSurface} onColor={light.inverseSurface} />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <ColorBox title="Inverse Primary" color={light.inversePrimary} onColor={light.onPrimaryContainer} />
                         </Grid>
                     </Grid>
                 </Grid>
@@ -174,7 +185,7 @@ const ColorSystem = () => {
                             <ColorBox title="Outline" color={dark.outline} onColor={dark.background} />
                         </Grid>
                     </Grid>
-                    <Grid container columns={16} marginBottom={1}>
+                    <Grid container columns={16} marginBottom={2}>
                         <Grid item xs={4}>
                             <ColorBox title="Error" color={dark.error} onColor={dark.onError} />
                         </Grid>
@@ -186,6 +197,17 @@ const ColorSystem = () => {
                         </Grid>
                         <Grid item xs={4}>
                             <ColorBox title="On Error Container" color={dark.onErrorContainer} onColor={dark.errorContainer} />
+                        </Grid>
+                    </Grid>
+                    <Grid container columns={12} marginBottom={2}>
+                        <Grid item xs={4}>
+                            <ColorBox title="Inverse Surface" color={dark.inverseSurface} onColor={dark.inverseOnSurface} />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <ColorBox title="Inverse On Surface" color={dark.inverseOnSurface} onColor={dark.inverseSurface} />
+                        </Grid>
+                        <Grid item xs={4}>
+                            <ColorBox title="Inverse Primary" color={dark.inversePrimary} onColor={dark.onPrimaryContainer} />
                         </Grid>
                     </Grid>
                 </Grid>
