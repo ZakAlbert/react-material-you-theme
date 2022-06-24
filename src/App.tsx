@@ -1,6 +1,6 @@
 
 import { FC } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ColorSystem from './components/ColorSystem';
 
 import Layout from './layout/Layout';
@@ -15,6 +15,7 @@ const App: FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<RootLayout />} >
+          <Route index element={<Navigate to="/Components" replace />} />
           <Route path="/Components" element={<ComponentPage />}></Route>
           <Route path="/Theme" element={<ColorSystem />}></Route>
         </Route>
