@@ -1,5 +1,6 @@
 import { FC, useContext, useState } from "react";
-import { AppBar, Avatar, Badge, Container, Fade, Grid, IconButton, Link, Slide, Tab, Tabs, Toolbar, Tooltip, Typography, useScrollTrigger, useTheme } from "@mui/material";
+import { AppBar, Avatar, Badge, Container, createTheme, Fade, Grid, IconButton, Link, Slide, Tab, Tabs, Theme, Toolbar, Tooltip, Typography, useScrollTrigger, useTheme } from "@mui/material";
+import { deepmerge } from "@mui/utils";
 
 import MenuIcon from '@mui/icons-material/MenuTwoTone';
 import NotificationIcon from '@mui/icons-material/NotificationsOutlined';
@@ -9,7 +10,7 @@ import MailIcon from '@mui/icons-material/MailOutline';
 import RestartIcon from '@mui/icons-material/RefreshOutlined';
 import ArrowIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
-import { ThemeModeContext, ThemeSchemeContext } from "../theme";
+import { getDesignTokens, getThemedComponents, ThemeModeContext, ThemeSchemeContext } from "../theme";
 import { useLocation } from "react-router-dom";
 import { FileDownloadOutlined, Shuffle } from "@mui/icons-material";
 
@@ -21,6 +22,8 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
 
     const theme = useTheme();
+    const { themeScheme } = useContext(ThemeSchemeContext);
+
     const palette = theme.palette;
     const location = useLocation();
 
@@ -36,15 +39,32 @@ const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
 
     const downloadTheme = async () => {
         // turn the theme into a string
-        const themeString = JSON.stringify(theme);
+        const lightDesignTokens = getDesignTokens('light', themeScheme['light'], themeScheme.tones);
+        let lightTheme = createTheme(lightDesignTokens);
+        lightTheme = deepmerge(lightTheme, getThemedComponents(lightTheme));
+
+        const darkDesignTokens = getDesignTokens('dark', themeScheme['dark'], themeScheme.tones);
+        let darkTheme = createTheme(darkDesignTokens);
+        darkTheme = deepmerge(darkTheme, getThemedComponents(darkTheme));
+
+
+        const lightString = JSON.stringify(lightTheme);
+        const darkString = JSON.stringify(darkTheme);
 
         // make it downloadable
         const element = document.createElement("a");
-        const file = new Blob([themeString], { type: 'application/json' });
+        const file = new Blob([lightString], { type: 'application/json' });
         element.href = URL.createObjectURL(file);
-        element.download = "theme.json";
+        element.download = 'lightTheme.json';
         document.body.appendChild(element);
         element.click();
+
+        const element2 = document.createElement("a");
+        const file2 = new Blob([darkString], { type: 'application/json' });
+        element2.href = URL.createObjectURL(file2);
+        element2.download = 'darkTheme.json';
+        document.body.appendChild(element2);
+        element2.click();
     }
 
     const reset = () => {
