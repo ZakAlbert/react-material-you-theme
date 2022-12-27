@@ -11,9 +11,7 @@ import ArrowIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
 import { ThemeModeContext, ThemeSchemeContext } from "../theme";
 import { useLocation } from "react-router-dom";
-import { Download, DownloadOutlined, FileDownloadOutlined, Shuffle } from "@mui/icons-material";
-import { MuiColorInput } from "mui-color-input";
-import { ColorBox, ColorButton, ColorInput, ColorPicker } from "mui-color";
+import { FileDownloadOutlined, Shuffle } from "@mui/icons-material";
 
 interface HeaderProps {
     onDrawerToggle?: () => void,
