@@ -1,7 +1,6 @@
 import { Box, Container, CssBaseline, useMediaQuery, useTheme } from "@mui/material";
 import { FC, useState } from "react";
 import { Outlet } from "react-router-dom";
-import Content from "../components/Content";
 import NavDrawer from "../components/Drawer";
 import Header from "../components/Header";
 
