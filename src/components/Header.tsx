@@ -3,7 +3,6 @@ import { AppBar, Avatar, Badge, Container, Fade, Grid, IconButton, Link, Slide, 
 
 import MenuIcon from '@mui/icons-material/MenuTwoTone';
 import NotificationIcon from '@mui/icons-material/NotificationsOutlined';
-import ColorIcon from '@mui/icons-material/ColorLensOutlined';
 import DarkIcon from '@mui/icons-material/DarkModeOutlined';
 import LightIcon from '@mui/icons-material/LightModeOutlined';
 import MailIcon from '@mui/icons-material/MailOutline';
@@ -12,6 +11,9 @@ import ArrowIcon from '@mui/icons-material/ArrowForwardIosOutlined';
 
 import { ThemeModeContext, ThemeSchemeContext } from "../theme";
 import { useLocation } from "react-router-dom";
+import { Download, DownloadOutlined, FileDownloadOutlined, Shuffle } from "@mui/icons-material";
+import { MuiColorInput } from "mui-color-input";
+import { ColorBox, ColorButton, ColorInput, ColorPicker } from "mui-color";
 
 interface HeaderProps {
     onDrawerToggle?: () => void,
@@ -20,7 +22,8 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
 
-    const { palette } = useTheme();
+    const theme = useTheme();
+    const palette = theme.palette;
     const location = useLocation();
 
     const { toggleThemeMode, resetThemeMode } = useContext(ThemeModeContext);
@@ -28,10 +31,23 @@ const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
 
     const changeThemeMode = () => toggleThemeMode();
 
-    const changeThemeScheme = async () => {
+    const shuffleThemeScheme = async () => {
         const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
         generateThemeScheme(randomColor);
     };
+
+    const downloadTheme = async () => {
+        // turn the theme into a string
+        const themeString = JSON.stringify(theme);
+
+        // make it downloadable
+        const element = document.createElement("a");
+        const file = new Blob([themeString], { type: 'application/json' });
+        element.href = URL.createObjectURL(file);
+        element.download = "theme.json";
+        document.body.appendChild(element);
+        element.click();
+    }
 
     const reset = () => {
         resetThemeMode();
@@ -70,9 +86,16 @@ const Header: FC<HeaderProps> = ({ onDrawerToggle, window }) => {
                         </Grid>
                         <Grid item xs></Grid>
                         <Grid item>
-                            <Tooltip title='Change Color'>
-                                <IconButton size='large' color='inherit' onClick={changeThemeScheme}>
-                                    <ColorIcon />
+                            <Tooltip title='Download Theme'>
+                                <IconButton size='large' color='inherit' onClick={downloadTheme}>
+                                    <FileDownloadOutlined />
+                                </IconButton>
+                            </Tooltip>
+                        </Grid>
+                        <Grid item>
+                            <Tooltip title='Random Color'>
+                                <IconButton size='large' color='inherit' onClick={shuffleThemeScheme}>
+                                    <Shuffle />
                                 </IconButton>
                             </Tooltip>
                         </Grid>
