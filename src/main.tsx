@@ -1,22 +1,12 @@
-import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import M3 from './Theme/M3/M3';
 
-import { CssBaseline } from '@mui/material';
-
-import ThemeModeProvider from './theme/context/ThemeModeContext';
-import ThemeSchemeProvider from './theme/context/ThemeSchemeContext';
-import M3ThemeProvider from './theme/m3/M3ThemeProvider';
-
-const root = createRoot(document.getElementById('root')!);
+const container = document.getElementById('app') as Element;
+const root = createRoot(container);
 
 root.render(
-    <ThemeModeProvider>
-        <ThemeSchemeProvider>
-            <M3ThemeProvider>
-                <CssBaseline enableColorScheme />
-                <App />
-            </M3ThemeProvider>
-        </ThemeSchemeProvider>
-    </ThemeModeProvider>
+    <M3>
+        <App />
+    </M3>
 );

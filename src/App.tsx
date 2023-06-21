@@ -1,27 +1,14 @@
 
-import { FC } from 'react';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import ColorSystem from './components/ColorSystem';
+import { BrowserRouter } from "react-router-dom";
+import Router from "./pages/router";
 
-import Layout from './layout/Layout';
-import RootLayout from './layout/RootLayout';
-import ComponentPage from './pages/Components/Components';
-import Home from './pages/Home/Home';
+const App = () => {
 
-
-
-const App: FC = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<RootLayout />} >
-          <Route index element={<Navigate to="/Components" replace />} />
-          <Route path="/Components" element={<ComponentPage />}></Route>
-          <Route path="/Theme" element={<ColorSystem />}></Route>
-        </Route>
-      </Routes>
+      <Router />
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default App
+export default App;
