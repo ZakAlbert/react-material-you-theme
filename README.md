@@ -5,6 +5,7 @@ Implementation of [Material You](https://m3.material.io/) in a [React](https://r
 [Web Demo](https://react-m3-demo.web.app/  "Web Demo")
 
 Added a button to download Material You theme schema and theme settings for MUI.
+
 MUI Components with the Material You color scheme. Progressively more components will be added.
 
 - [x] Accordeon
