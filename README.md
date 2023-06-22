@@ -2,7 +2,7 @@
 
 Implementation of [Material You](https://m3.material.io/) in a [React](https://react.dev/) project and the [MUI](https://mui.com/material-ui/getting-started/overview/) component library.
 
-[Web Demo](https://react-m3-demo.web.app/  "Web Demo")
+[Web Demo](https://react-m3-demo.web.app/Home  "Web Demo")
 
 Added a button to download Material You theme schema and theme settings for MUI.
 
