@@ -66,20 +66,20 @@ export type ThemeTokens = {
     background: string;
     onBackground: string;
 
-    info?: string;
-    onInfo?: string;
-    infoContainer?: string;
-    onInfoContainer?: string;
+    info: string;
+    onInfo: string;
+    infoContainer: string;
+    onInfoContainer: string;
 
-    success?: string;
-    onSuccess?: string;
-    successContainer?: string;
-    onSuccessContainer?: string;
+    success: string;
+    onSuccess: string;
+    successContainer: string;
+    onSuccessContainer: string;
 
-    warning?: string;
-    onWarning?: string;
-    warningContainer?: string;
-    onWarningContainer?: string;
+    warning: string;
+    onWarning: string;
+    warningContainer: string;
+    onWarningContainer: string;
 }
 
 export const LightTokensDefault: ThemeTokens = {

@@ -9,8 +9,7 @@ declare module '@mui/material/styles/createTheme' {
 }
 
 declare module '@mui/material/styles/createPalette' {
-    interface Palette {
-        [index: string]: PaletteColor;
+    interface M3Palette {
         //primary: PaletteColor;
         onPrimary: PaletteColor;
         primaryContainer: PaletteColor;
@@ -64,10 +63,10 @@ declare module '@mui/material/styles/createPalette' {
         outline: PaletteColor;
         outlineVariant: PaletteColor;
 
-        inverseSurface: PaletteColor;
-        inverseOnSurface: PaletteColor;
         inversePrimary: PaletteColor;
         inverseOnPrimary: PaletteColor;
+        inverseSurface: PaletteColor;
+        inverseOnSurface: PaletteColor;
 
         shadow: PaletteColor;
         scrim: PaletteColor;
@@ -92,9 +91,19 @@ declare module '@mui/material/styles/createPalette' {
         warningContainer: PaletteColor;
         onWarningContainer: PaletteColor;
     }
+
+    interface M3PaletteOptions extends Record<keyof M3Palette, PaletteColorOptions>{
+        themeMode: string;
+    }
+
+    interface Palette extends M3Palette {
+    }
+
+    interface PaletteOptions extends M3PaletteOptions {
+    }
 }
 
-export const getMUIPalette = (themeMode: ThemeMode, themescheme: ThemeScheme) => {
+export const getMUIPalette = (themeMode: ThemeMode, themescheme: ThemeScheme): ThemeOptions => {
     const scheme = themescheme[themeMode];
     return {
         palette: {
@@ -244,7 +253,7 @@ export const getMUIPalette = (themeMode: ThemeMode, themescheme: ThemeScheme) =>
             },
             onSurfaceVariant: {
                 main: scheme.onSurfaceVariant,
-                contranstText: scheme.surfaceVariant
+                contrastText: scheme.surfaceVariant
             },
 
             outline: {
@@ -353,5 +362,5 @@ export const getMUIPalette = (themeMode: ThemeMode, themescheme: ThemeScheme) =>
             divider: scheme.outline
         },
         tones: themescheme.tones
-    } as ThemeOptions;
+    };
 }
