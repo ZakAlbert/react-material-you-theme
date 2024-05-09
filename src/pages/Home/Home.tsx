@@ -13,30 +13,27 @@ import { SwitchView } from '../../views/SwitchView';
 import { AppBarView } from '../../views/AppBarView';
 import { AvatarView } from '../../views/AvatarView';
 import { AlertView } from '../../views/AlertView';
-import MainContainer from '../../components/Container/MainContainer';
 import { CardView } from '../../views/CardView';
 
 const Home = () => {
 
     return (
         <>
-            <MainContainer>
-                <BaseColorView />
-                <Stack spacing={6}>
-                    <ButtonsView />
-                    <IconButtonView />
-                    <FABView />
-                    <ToggleButtonView />
-                    <ToggleButtonGroupView />
-                    <SwitchView />
-                    <CardView />
-                    <BadgeView />
-                    <AvatarView />
-                    <AppBarView />
-                    <AccordionView />
-                    <AlertView />
-                </Stack >
-            </MainContainer>
+            <BaseColorView />
+            <Stack spacing={6}>
+                <ButtonsView />
+                <IconButtonView />
+                <FABView />
+                <ToggleButtonView />
+                <ToggleButtonGroupView />
+                <SwitchView />
+                <CardView />
+                <BadgeView />
+                <AvatarView />
+                <AppBarView />
+                <AccordionView />
+                <AlertView />
+            </Stack >
         </>
     );
 };

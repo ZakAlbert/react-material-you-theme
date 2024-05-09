@@ -76,14 +76,14 @@ const MainDrawer: FC<DrawerProps> = (props) => {
                             <ListItemText>Color System</ListItemText>
                         </ListItemButton>
                     </ListItem>
-                    <ListItem >
+                    {/*<ListItem >
                         <ListItemButton component={Link} to='/About' selected={selectedIndex == 'About'} onClick={() => handleListItemClick('About')}>
                             <ListItemIcon>
                                 {selectedIndex == 'About' ? <InfoIcon /> : <InfoIconOutlined />}
                             </ListItemIcon>
                             <ListItemText>About</ListItemText>
                         </ListItemButton>
-                    </ListItem>
+                    </ListItem>*/}
                 </Box>
                 {categories.map(({ id, children }) => (
                     <Box key={id}>

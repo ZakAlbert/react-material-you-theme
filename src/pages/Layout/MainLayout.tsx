@@ -1,8 +1,9 @@
-import { Box, SxProps, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Paper, SxProps, useMediaQuery, useTheme } from "@mui/material";
 import { FC, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MainDrawer from "../../components/Drawer/MainDrawer";
 import MainAppBar from "../../components/AppBar/MainAppBar";
+import MainContainer from "../../components/Container/MainContainer";
 
 
 const drawerWidth = 260;
@@ -55,9 +56,12 @@ const MainLayout: FC = () => {
                     sx={{ display: { md: 'block', sm: 'none', xs: 'none' } }} />
             </Box>
             <Box sx={mainStyles}>
-                <MainAppBar onDrawerToggle={handleDrawerToggle} />
                 <Box sx={containerStyles}>
-                    <Outlet />
+                    <MainAppBar onDrawerToggle={handleDrawerToggle} />
+                    <MainContainer>
+
+                        <Outlet />
+                    </MainContainer>
                 </Box>
             </Box>
         </Box>

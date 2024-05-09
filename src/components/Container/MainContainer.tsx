@@ -15,9 +15,7 @@ const MainContainer: FC<{ children?: React.ReactNode }> = ({ children }) => {
         borderTopRightRadius: radiusTop,
         borderBottomLeftRadius: radiusBottom,
         borderBottomRightRadius: radiusBottom,
-
-        /*height: isSxUp ? 'auto' : 1,
-        m: isSxUp ? 2 : 0,*/
+        //m: isSxUp ? 2 : 0,
         height: isSxUp ? 'auto' : 1,
         mt: 0,
         mb: isSxUp ? 2 : 0,
