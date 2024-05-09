@@ -3,7 +3,7 @@ import {
     Theme,
     ComponentsProps, ComponentsOverrides, ComponentsVariants
 } from '@mui/material';
-import { StateLayer, getStateLayerColor } from '../..';
+import { StateLayer, getStateLayerColor } from '../utils/getStayeLayerColor';
 
 
 interface M3ToggleButtonGroup {

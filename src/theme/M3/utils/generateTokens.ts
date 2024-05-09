@@ -1,5 +1,9 @@
 import { argbFromHex, hexFromArgb, themeFromSourceColor } from "@material/material-color-utilities";
-import { ThemeMode, ThemeTokens, TonalPalette, Tone } from "../..";
+import { ThemeMode } from "../types/ThemeMode";
+import { Tone } from "../types/Tone";
+import { ThemeTokens } from "../types/ThemeTokens";
+import { TonalPalette } from "../types/TonalPalette";
+
 
 const getColorToken = (themeMode: ThemeMode, palette: Tone, lightLevel: number, darkLevel: number): string => palette[themeMode == 'light' ? lightLevel : darkLevel];
 

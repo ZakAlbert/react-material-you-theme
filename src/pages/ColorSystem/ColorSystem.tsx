@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2/Grid2';
 import { useContext } from 'react';
-import { ThemeSchemeContext } from '../../theme';
 import { ThemeModeContext } from '../../theme/M3/providers/ThemeModeProvider';
+import { ThemeSchemeContext } from '../../theme/M3/providers/ThemeSchemeProvider';
 
 const PaletteSwatch = ({ title, onTitle, titleColor, onTitleColor }: any) => {
     return (

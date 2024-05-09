@@ -2,7 +2,11 @@
 import { useContext, useMemo } from "react";
 import { CssBaseline, createTheme, ThemeProvider } from '@mui/material';
 import { deepmerge } from "@mui/utils";
-import { ThemeModeContext, ThemeSchemeContext, getMUIComponents, getMUIPalette } from "../..";
+import { ThemeModeContext } from "../providers/ThemeModeProvider";
+import { ThemeSchemeContext } from "../providers/ThemeSchemeProvider";
+import { getMUIPalette } from "../utils/getMUIPalette";
+import { getMUIComponents } from "../utils/getMUIComponents";
+
 
 interface M3Props {
     children?: React.ReactNode;

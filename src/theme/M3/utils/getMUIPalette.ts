@@ -1,6 +1,9 @@
 
-import { ThemeMode, ThemeScheme, TonalPalette } from "../..";
+
 import { ThemeOptions, } from '@mui/material';
+import { TonalPalette } from '../types/TonalPalette';
+import { ThemeMode } from '../types/ThemeMode';
+import { ThemeScheme } from '../types/ThemeScheme';
 
 declare module '@mui/material/styles/createTheme' {
     interface ThemeOptions {
@@ -92,7 +95,7 @@ declare module '@mui/material/styles/createPalette' {
         onWarningContainer: PaletteColor;
     }
 
-    interface M3PaletteOptions extends Record<keyof M3Palette, PaletteColorOptions>{
+    interface M3PaletteOptions extends Record<keyof M3Palette, PaletteColorOptions> {
         themeMode: string;
     }
 

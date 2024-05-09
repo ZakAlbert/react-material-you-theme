@@ -1,6 +1,9 @@
 import { createContext, FC, useLayoutEffect, useState } from 'react';
+import { ThemeScheme, ThemeSchemeDefault } from '../types/ThemeScheme';
+import { useTonalPalette } from '../hooks/useTonalPalette';
+import { generateDesignTokens } from '../utils/generateTokens';
 
-import { generateDesignTokens, ThemeScheme, ThemeSchemeDefault, useTonalPalette } from "../..";
+
 
 export interface ThemeSchemeContextType {
     generateScheme: (hexColor: string) => void;

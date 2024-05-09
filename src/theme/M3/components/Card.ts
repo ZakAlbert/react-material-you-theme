@@ -1,9 +1,6 @@
 
-import {
-    Theme,
-    ComponentsProps, ComponentsOverrides, ComponentsVariants
-} from '@mui/material';
-import { StateLayer, getStateLayerColor } from '../..';
+import { Theme, ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@mui/material';
+import { StateLayer, getStateLayerColor } from '../utils/getStayeLayerColor';
 import { alpha } from '@mui/material';
 
 declare module '@mui/material/Paper' {

@@ -1,5 +1,3 @@
-
-
 import ThemeModeProvider from "./providers/ThemeModeProvider";
 import ThemeSchemeProvider from "./providers/ThemeSchemeProvider";
 import M3Theme from "./wrapper/M3Theme";

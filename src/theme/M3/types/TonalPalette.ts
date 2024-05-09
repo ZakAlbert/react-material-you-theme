@@ -1,4 +1,4 @@
-import { ErrorDefault, NeutralDefault, NeutralVariantDefault, PrimaryDefault, SecondaryDefault, TertiaryDefault, Tone } from './Tone';
+import { ErrorDefault, NeutralDefault, NeutralVariantDefault, PrimaryDefault, SecondaryDefault, TertiaryDefault, Tone } from "./Tone";
 
 export type TonalPalette = {
     primary: Tone;

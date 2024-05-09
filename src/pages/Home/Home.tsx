@@ -1,4 +1,3 @@
-
 import { Stack } from '@mui/material';
 
 import { ButtonsView } from '../../views/ButtonsView';

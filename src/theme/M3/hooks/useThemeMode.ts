@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from 'react';
-import { ThemeMode } from '../..';
+import { ThemeMode } from '../types/ThemeMode';
 
 export const THEME_MODE_KEY = 'ThemeModeKey';
 
