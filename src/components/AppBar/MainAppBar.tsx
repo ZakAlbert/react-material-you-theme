@@ -1,6 +1,6 @@
 import { FC, useContext, useState } from "react";
 import { AppBar, Avatar, Grid, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography, useScrollTrigger, useTheme } from "@mui/material";
-import { ThemeModeContext, ThemeSchemeContext } from "../../Theme";
+import { ThemeModeContext, ThemeSchemeContext } from "../../theme";
 import { useLocation } from "react-router-dom";
 
 import MenuIcon from '@mui/icons-material/MenuTwoTone';

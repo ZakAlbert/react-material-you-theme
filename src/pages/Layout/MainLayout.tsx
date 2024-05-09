@@ -1,4 +1,4 @@
-import { Box, Paper, SxProps, useMediaQuery, useTheme } from "@mui/material";
+import { Box, SxProps, useMediaQuery, useTheme } from "@mui/material";
 import { FC, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MainDrawer from "../../components/Drawer/MainDrawer";

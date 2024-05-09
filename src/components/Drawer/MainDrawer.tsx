@@ -5,8 +5,6 @@ import { Link, useLocation } from "react-router-dom";
 
 import HomeIcon from '@mui/icons-material/Home';
 import HomeIconOutlined from '@mui/icons-material/HomeOutlined';
-import InfoIcon from '@mui/icons-material/Info';
-import InfoIconOutlined from '@mui/icons-material/InfoOutlined';
 
 import PeopleIcon from '@mui/icons-material/PeopleOutline';
 import PermMediaOutlinedIcon from '@mui/icons-material/PhotoSizeSelectActualOutlined';
